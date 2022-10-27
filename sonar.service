@@ -1,0 +1,16 @@
+[Unit]
+Description=Sonar Service for Huddie
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+
+# Compose up
+ExecStart=/usr/bin/docker-compose -f /opt/sonar/docker-compose.yaml up
+
+# Compose down, remove containers and volumes
+ExecStop=/usr/bin/docker-compose -f /opt/sonar/docker-compose.yaml down
+
+[Install]
+WantedBy=multi-user.target
